@@ -2,6 +2,7 @@ import { Alert, Authenticator } from '@aws-amplify/ui-react';
 import { Example } from '@/components/Example';
 import { Fragment } from '@/components/Fragment';
 import { Tabs, TabItem } from '@aws-amplify/ui-react';
+import { mockServices } from '../../../../../data/amplifyMock';
 
 <Alert role="none" heading="Zero Configuration">
 
@@ -23,7 +24,21 @@ You can provide an alternative `username` such as `email` or `phone_number`.
       {({ platform }) => import(`./loginMechanisms.username.${platform}.mdx`)}
     </Fragment>
     <Example>
-      <Authenticator />
+      <Alert isDismissible="false" variation="info">
+        The Authenticator demo below uses a mock backend. Any users you create are stored in memory.
+        You can verify accounts that you create or verify reset password process with the code "123456".
+        For users trying to demo the sign in and reset password flow without the sign up flow, you can use
+        fixed username "test", email "test@test.com", and phone number "0123456789" for the respective log
+        in mechanisms along with the fixed password "password".
+      </Alert>
+      <Authenticator services={mockServices}>
+        {({ signOut, user }) => (
+          <main>
+            <h1>Hello {user.username}</h1>
+            <button onClick={signOut}>Sign out</button>
+          </main>
+        )}
+      </Authenticator>
     </Example>
   </TabItem>
   <TabItem title="Email">
@@ -31,7 +46,21 @@ You can provide an alternative `username` such as `email` or `phone_number`.
       {({ platform }) => import(`./loginMechanisms.email.${platform}.mdx`)}
     </Fragment>
     <Example>
-      <Authenticator loginMechanisms={['email']} />
+      <Alert isDismissible="false" variation="info">
+        The Authenticator demo below uses a mock backend. Any users you create are stored in memory.
+        You can verify accounts that you create or verify reset password process with the code "123456".
+        For users trying to demo the sign in and reset password flow without the sign up flow, you can use
+        fixed username "test", email "test@test.com", and phone number "0123456789" for the respective log
+        in mechanisms along with the fixed password "password".
+      </Alert>
+      <Authenticator services={mockServices} loginMechanisms={['email']}>
+        {({ signOut, user }) => (
+          <main>
+            <h1>Hello {user.username}</h1>
+            <button onClick={signOut}>Sign out</button>
+          </main>
+        )}
+      </Authenticator>
     </Example>
   </TabItem>
   <TabItem title="Phone Number">
@@ -41,7 +70,21 @@ You can provide an alternative `username` such as `email` or `phone_number`.
       }
     </Fragment>
     <Example>
-      <Authenticator loginMechanisms={['phone_number']} />
+      <Alert isDismissible="false" variation="info">
+        The Authenticator demo below uses a mock backend. Any users you create are stored in memory.
+        You can verify accounts that you create or verify reset password process with the code "123456".
+        For users trying to demo the sign in and reset password flow without the sign up flow, you can use
+        fixed username "test", email "test@test.com", and phone number "0123456789" for the respective log
+        in mechanisms along with the fixed password "password".
+      </Alert>
+      <Authenticator services={mockServices} loginMechanisms={['phone_number']}>
+        {({ signOut, user }) => (
+          <main>
+            <h1>Hello {user.username}</h1>
+            <button onClick={signOut}>Sign out</button>
+          </main>
+        )}
+      </Authenticator>
     </Example>
   </TabItem>
 </Tabs>

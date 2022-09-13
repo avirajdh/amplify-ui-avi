@@ -1,4 +1,6 @@
 const FIXED_USERNAME = 'test';
+const FIXED_EMAIL = 'test@test.com';
+const FIXED_PHONE = '+10123456789';
 const FIXED_PASSWORD = 'password';
 const FIXED_VERIFICATION_CODE = '123456';
 
@@ -8,7 +10,12 @@ const verifiedUsers = new Map();
 let signUpPassword = '';
 
 const checkFixedCredentials = (username, password) => {
-  return username === FIXED_USERNAME && password === FIXED_PASSWORD;
+  return (
+    (username === FIXED_USERNAME ||
+      username === FIXED_EMAIL ||
+      username === FIXED_PHONE) &&
+    password === FIXED_PASSWORD
+  );
 };
 
 export const mockServices = {

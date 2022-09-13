@@ -1,6 +1,21 @@
-import { Authenticator } from '@aws-amplify/ui-react';
+import { Authenticator, Alert } from '@aws-amplify/ui-react';
 import { Example } from '@/components/Example';
+import { mockServices } from '../../../../../data/amplifyMock';
 
 <Example>
-  <Authenticator initialState="signUp" signUpAttributes={['email']} />
+  <Alert isDismissible="false" variation="info">
+    The Authenticator demo below uses a mock backend. Any users you create are stored in memory.
+    You can verify accounts that you create or verify reset password process with the code "123456".
+    For users trying to demo the sign in and reset password flow without the sign up flow, you can use
+    fixed username "test", email "test@test.com", and phone number "0123456789" for the respective log
+    in mechanisms along with the fixed password "password".
+  </Alert>
+  <Authenticator initialState="signUp" services={mockServices} signUpAttributes={['email']}>
+    {({ signOut, user }) => (
+      <main>
+        <h1>Hello {user.username}</h1>
+        <button onClick={signOut}>Sign out</button>
+      </main>
+    )}
+  </Authenticator>
 </Example>

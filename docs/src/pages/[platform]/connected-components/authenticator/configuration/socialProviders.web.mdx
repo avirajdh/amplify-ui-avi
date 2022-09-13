@@ -1,7 +1,8 @@
-import { Alert } from '@aws-amplify/ui-react';
+import { Alert, Authenticator } from '@aws-amplify/ui-react';
 import { Example } from '@/components/Example';
 import { Fragment } from '@/components/Fragment';
-import {SocialProviderDemo} from "@/components/SocialProviderDemo";
+import { mockServices } from '../../../../../data/amplifyMock';
+import { mockComponents } from '../../../../../data/amplifyMock';
 
 
 <Alert role="none" heading="Zero Configuration">
@@ -18,7 +19,21 @@ For your [configured social providers](https://docs.amplify.aws/lib/auth/social/
 </Fragment>
 
 <Example>
-  <SocialProviderDemo/>
+  <Alert isDismissible="false" variation="info">
+    The Authenticator demo below uses a mock backend. Any users you create are stored in memory.
+    You can verify accounts that you create or verify reset password process with the code "123456".
+    For users trying to demo the sign in and reset password flow without the sign up flow, you can use
+    fixed username "test", email "test@test.com", and phone number "0123456789" for the respective log
+    in mechanisms along with the fixed password "password".
+  </Alert>
+  <Authenticator services={mockServices} components={mockComponents}>
+    {({ signOut, user }) => (
+      <main>
+        <h1>Hello {user.username}</h1>
+        <button onClick={signOut}>Sign out</button>
+      </main>
+    )}
+  </Authenticator>
 </Example>
 
 _[Step by step video](https://youtu.be/8KwZNn56F78) on setting up social providers._
