@@ -1,9 +1,11 @@
-import { Authenticator, Button } from '@aws-amplify/ui-react';
+import { Authenticator, Alert, Button } from '@aws-amplify/ui-react';
 
 import { Example } from '@/components/Example';
 import { Expander, ExpanderItem, Text } from '@aws-amplify/ui-react';
 
 import { LabelsAndTextDemo } from './LabelsAndTextDemo';
+
+import { mockServices } from '../../../../../data/amplifyMock';
 
 Using the same techniques as [Internationalization (I18n)](#internationalization-i18n), you can customize the labels and text of the components:
 
@@ -14,7 +16,21 @@ Using the same techniques as [Internationalization (I18n)](#internationalization
     Because `I18n` manages global translations, customizing these will affect all translations of these strings (including those on this page!).
 
     <Example>
-      <Authenticator />
+      <Alert isDismissible="false" variation="info">
+        The Authenticator demo below uses a mock backend. Any users you create are stored in memory.
+        You can verify accounts that you create or verify reset password process with the code "123456".
+        For users trying to demo the sign in and reset password flow without the sign up flow, you can use
+        fixed username "test", email "test@test.com", and phone number "0123456789" for the respective log
+        in mechanisms along with the fixed password "password".
+      </Alert>
+      <Authenticator services={mockServices}>
+        {({ signOut, user }) => (
+          <main>
+            <h1>Hello {user.username}</h1>
+            <button onClick={signOut}>Sign out</button>
+          </main>
+        )}
+      </Authenticator>
     </Example>
 
   </ExpanderItem>
@@ -32,7 +48,22 @@ Using the same techniques as [Internationalization (I18n)](#internationalization
     ```
 
     <Example>
-      <LabelsAndTextDemo Component={<Authenticator initialState="signIn"/>} />
+      <Alert isDismissible="false" variation="info">
+        The Authenticator demo below uses a mock backend. Any users you create are stored in memory.
+        You can verify accounts that you create or verify reset password process with the code "123456".
+        For users trying to demo the sign in and reset password flow without the sign up flow, you can use
+        fixed username "test", email "test@test.com", and phone number "0123456789" for the respective log
+        in mechanisms along with the fixed password "password".
+      </Alert>
+      <LabelsAndTextDemo Component={
+        <Authenticator initialState="signIn" services={mockServices}>
+          {({ signOut, user }) => (
+            <main>
+              <h1>Hello {user.username}</h1>
+              <button onClick={signOut}>Sign out</button>
+            </main>
+          )}
+        </Authenticator>} />
     </Example>
 
   </ExpanderItem>
@@ -49,7 +80,22 @@ Using the same techniques as [Internationalization (I18n)](#internationalization
     ```
 
     <Example>
-      <LabelsAndTextDemo Component={<Authenticator initialState="signUp"/>} />
+      <Alert isDismissible="false" variation="info">
+        The Authenticator demo below uses a mock backend. Any users you create are stored in memory.
+        You can verify accounts that you create or verify reset password process with the code "123456".
+        For users trying to demo the sign in and reset password flow without the sign up flow, you can use
+        fixed username "test", email "test@test.com", and phone number "0123456789" for the respective log
+        in mechanisms along with the fixed password "password".
+      </Alert>
+      <LabelsAndTextDemo Component={
+        <Authenticator initialState="signUp" services={mockServices}>
+          {({ signOut, user }) => (
+            <main>
+              <h1>Hello {user.username}</h1>
+              <button onClick={signOut}>Sign out</button>
+            </main>
+          )}
+        </Authenticator>} />
     </Example>
 
   </ExpanderItem>
@@ -65,7 +111,22 @@ Using the same techniques as [Internationalization (I18n)](#internationalization
     ```
 
     <Example>
-      <LabelsAndTextDemo Component={<Authenticator initialState="resetPassword"/>} />
+      <Alert isDismissible="false" variation="info">
+        The Authenticator demo below uses a mock backend. Any users you create are stored in memory.
+        You can verify accounts that you create or verify reset password process with the code "123456".
+        For users trying to demo the sign in and reset password flow without the sign up flow, you can use
+        fixed username "test", email "test@test.com", and phone number "0123456789" for the respective log
+        in mechanisms along with the fixed password "password".
+      </Alert>
+      <LabelsAndTextDemo Component={
+        <Authenticator initialState="resetPassword" services={mockServices}>
+          {({ signOut, user }) => (
+            <main>
+              <h1>Hello {user.username}</h1>
+              <button onClick={signOut}>Sign out</button>
+            </main>
+          )}
+        </Authenticator>} />
     </Example>
 
   </ExpanderItem>

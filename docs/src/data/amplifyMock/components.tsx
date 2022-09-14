@@ -1,4 +1,13 @@
-import { Flex, Icon, Button, Text, Divider } from '@aws-amplify/ui-react';
+import {
+  Flex,
+  Icon,
+  Button,
+  Text,
+  Divider,
+  View,
+  Image,
+  useTheme,
+} from '@aws-amplify/ui-react';
 
 const AppleIcon = (): JSX.Element => {
   return (

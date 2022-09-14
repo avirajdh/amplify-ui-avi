@@ -1,11 +1,14 @@
 import {
   Authenticator,
+  Alert,
   CheckboxField,
   useAuthenticator,
 } from '@aws-amplify/ui-react';
 
 import { Example } from '@/components/Example';
 import { Fragment } from '@/components/Fragment';
+
+import { mockServices } from '../../../../../../data/amplifyMock';
 
 ## Sign Up Field Order
 
@@ -24,7 +27,15 @@ In the example below the order will be set as `email`, `family_name`, `birthdate
 </Fragment>
 
 <Example>
+  <Alert isDismissible="false" variation="info">
+    The Authenticator demo below uses a mock backend. Any users you create are stored in memory.
+    You can verify accounts that you create or verify reset password process with the code "123456".
+    For users trying to demo the sign in and reset password flow without the sign up flow, you can use
+    fixed username "test", email "test@test.com", and phone number "0123456789" for the respective log
+    in mechanisms along with the fixed password "password".
+  </Alert>
   <Authenticator
+    services={mockServices}
     initialState={'signUp'}
     loginMechanisms={['email']}
     signUpAttributes={['birthdate', 'family_name', 'preferred_username']}
@@ -50,8 +61,14 @@ In the example below the order will be set as `email`, `family_name`, `birthdate
         }
       },
     }}
-
-/>
+  >
+    {({ signOut, user }) => (
+      <main>
+        <h1>Hello {user.username}</h1>
+        <button onClick={signOut}>Sign out</button>
+      </main>
+    )}
+  </Authenticator>
 
 </Example>
 
@@ -91,7 +108,15 @@ The following example customizes the Sign In page by:
 <Fragment>{({ platform }) => import(`./form-fields.${platform}.mdx`)}</Fragment>
 
 <Example>
+  <Alert isDismissible="false" variation="info">
+    The Authenticator demo below uses a mock backend. Any users you create are stored in memory.
+    You can verify accounts that you create or verify reset password process with the code "123456".
+    For users trying to demo the sign in and reset password flow without the sign up flow, you can use
+    fixed username "test", email "test@test.com", and phone number "0123456789" for the respective log
+    in mechanisms along with the fixed password "password".
+  </Alert>
   <Authenticator
+    services={mockServices}
     loginMechanisms={['email']}
     formFields={{
       signIn: {
@@ -103,7 +128,14 @@ The following example customizes the Sign In page by:
         },
       }
     }}
-/>
+  >
+    {({ signOut, user }) => (
+      <main>
+        <h1>Hello {user.username}</h1>
+        <button onClick={signOut}>Sign out</button>
+      </main>
+    )}
+  </Authenticator>
 
 </Example>
 
@@ -118,7 +150,15 @@ The following example will set the default dial code to `+227` on the Sign Up an
 </Fragment>
 
 <Example>
+  <Alert isDismissible="false" variation="info">
+    The Authenticator demo below uses a mock backend. Any users you create are stored in memory.
+    You can verify accounts that you create or verify reset password process with the code "123456".
+    For users trying to demo the sign in and reset password flow without the sign up flow, you can use
+    fixed username "test", email "test@test.com", and phone number "0123456789" for the respective log
+    in mechanisms along with the fixed password "password".
+  </Alert>
   <Authenticator
+    services={mockServices}
     loginMechanisms={['phone_number']}
     formFields={{
       signIn: {
@@ -132,7 +172,14 @@ The following example will set the default dial code to `+227` on the Sign Up an
         },
       },
     }}
-  />
+  >
+    {({ signOut, user }) => (
+      <main>
+        <h1>Hello {user.username}</h1>
+        <button onClick={signOut}>Sign out</button>
+      </main>
+    )}
+  </Authenticator>
 </Example>
 
 ### Change dial code list
@@ -148,7 +195,15 @@ In this example, only four dial codes are show in the drop down list for the sig
 </Fragment>
 
 <Example>
+  <Alert isDismissible="false" variation="info">
+    The Authenticator demo below uses a mock backend. Any users you create are stored in memory.
+    You can verify accounts that you create or verify reset password process with the code "123456".
+    For users trying to demo the sign in and reset password flow without the sign up flow, you can use
+    fixed username "test", email "test@test.com", and phone number "0123456789" for the respective log
+    in mechanisms along with the fixed password "password".
+  </Alert>
   <Authenticator
+    services={mockServices}
     loginMechanisms={['phone_number']}
     formFields={{
       signIn: {
@@ -162,7 +217,14 @@ In this example, only four dial codes are show in the drop down list for the sig
         }
       }
     }}
-/>
+    >
+      {({ signOut, user }) => (
+        <main>
+          <h1>Hello {user.username}</h1>
+          <button onClick={signOut}>Sign out</button>
+        </main>
+      )}
+  </Authenticator>
 
 </Example>
 

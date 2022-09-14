@@ -24,9 +24,13 @@ const checkFixedCredentials = (username, password) => {
     if (username.substring(2) === FIXED_PHONE) {
       user = username.substring(2);
     }
+  } else if (username.length === 10) {
+    user = username;
   }
   return (
-    (user === FIXED_USERNAME || user === FIXED_EMAIL || user === FIXED_PHONE) &&
+    (username === FIXED_USERNAME ||
+      username === FIXED_EMAIL ||
+      user === FIXED_PHONE) &&
     password === FIXED_PASSWORD
   );
 };

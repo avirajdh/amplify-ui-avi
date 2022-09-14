@@ -1,8 +1,10 @@
-import { Authenticator, ThemeProvider } from '@aws-amplify/ui-react';
+import { Authenticator, ThemeProvider, Alert } from '@aws-amplify/ui-react';
 import { AuthStyle } from './AuthStyle';
 
 import { Example } from '@/components/Example';
 import { Fragment } from '@/components/Fragment';
+
+import { mockServices } from '../../../../../data/amplifyMock';
 
 ## Styling
 
@@ -54,7 +56,21 @@ For example, if you'd like to hide the sign up tab, you can override the `amplif
       display: none;
     }
   `}</style>
-  <Authenticator className="customization-hide-sign-up" />
+  <Alert isDismissible="false" variation="info">
+    The Authenticator demo below uses a mock backend. Any users you create are stored in memory.
+    You can verify accounts that you create or verify reset password process with the code "123456".
+    For users trying to demo the sign in and reset password flow without the sign up flow, you can use
+    fixed username "test", email "test@test.com", and phone number "0123456789" for the respective log
+    in mechanisms along with the fixed password "password".
+  </Alert>
+  <Authenticator className="customization-hide-sign-up" services={mockServices}>
+    {({ signOut, user }) => (
+      <main>
+        <h1>Hello {user.username}</h1>
+        <button onClick={signOut}>Sign out</button>
+      </main>
+    )}
+  </Authenticator>
 </Example>
 
 If you'd like to update the primary color of your submit button you can override the `amplify-button` class.
@@ -75,5 +91,19 @@ If you'd like to update the primary color of your submit button you can override
       background:linear-gradient(to right, var(--amplify-colors-green-80),var(--amplify-colors-orange-40) );
     }
   `}</style>
-  <Authenticator className="customization-button" />
+  <Alert isDismissible="false" variation="info">
+    The Authenticator demo below uses a mock backend. Any users you create are stored in memory.
+    You can verify accounts that you create or verify reset password process with the code "123456".
+    For users trying to demo the sign in and reset password flow without the sign up flow, you can use
+    fixed username "test", email "test@test.com", and phone number "0123456789" for the respective log
+    in mechanisms along with the fixed password "password".
+  </Alert>
+  <Authenticator className="customization-button" services={mockServices}>
+    {({ signOut, user }) => (
+      <main>
+        <h1>Hello {user.username}</h1>
+        <button onClick={signOut}>Sign out</button>
+      </main>
+    )}
+  </Authenticator>
 </Example>
